@@ -1,0 +1,80 @@
+/* Global site */
+body {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 15px;
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+  font-size-adjust: inherit;
+}
+p {
+  font-size: large;
+}
+footer {
+  text-align: center;
+  color: grey;
+}
+table,
+th,
+td {
+  border-bottom: 1px solid grey;
+  border-top: 1px solid grey;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+  border-collapse: collapse;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+table tr:nth-child(odd) {
+  background-color: rgb(226, 223, 223);
+}
+
+table tr:nth-child(even) {
+  background-color: white;
+}
+
+.container {
+  width: 75%;
+  margin: auto;
+  overflow: hidden;
+}
+
+h1 {
+  background: white;
+  color: #281381;
+  padding-top: 20px;
+  min-height: 50px;
+  border-bottom: grey 2px solid;
+  border-top: grey 2px solid;
+  font-size: 40px;
+}
+
+.submit_btn {
+  background-color: lightgreen;
+  color: rgb(87, 84, 84);
+  height: 35px;
+  width: 120px;
+  font-size: 16px;
+}
+.week_field {
+  width: 160px;
+  height: 22px;
+  font-size: 16px;
+}
+.dropdown_btn {
+  font-size: 19px;
+}
+.max_week_error {
+  color: red;
+}
+
+.big_vac {
+  font-size: 50px;
+  padding: 0;
+  margin: 0;
+}
+
+.show_percentage {
+  font-size: x-large;
+}
