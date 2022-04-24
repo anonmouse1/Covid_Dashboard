@@ -4,7 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<style src = "style.css"></style>
 
 <title>COVID-19 Dashboard</title>
 <link rel="stylesheet" type = "text/css" href="style.css">
@@ -23,7 +22,7 @@
         <p id = "info_to_user"></p>
             <input type = "text" id = "user_select_week" placeholder="input week number" class = "week_field">
             <button onclick= "defineUserWeek();userWeekparsedByAgeArray()"  id = "user_week_btn" class="submit_btn" >Submit Week</button>
-            <button onClick="window.location.reload();">Reset</button>
+            <button onClick="window.location.reload();" class = "reset_btn">Reset</button>
             <p id = "max_week_error" class ="max_week_error"></p>
             <p id = "data_4_week"></p>
         <h2 id = "disp_total_vac"></h2>
@@ -46,8 +45,9 @@
 
    <section id = "vaccines_per_agegroup">
     <div class = "container">
-        <h3>Fully Vaccinated per age group 2021</h3>
-            <input id = "check" type = "checkbox" onclick="changeToPercentage(always_correct_week)" class = "show_percentage"> Show as percentage (%)</input>
+        <h3>Fully Vaccinated Per Age Group 2021</h3>
+            <input id = "check" type = "checkbox" onclick="changeToPercentage(always_correct_week)" class = "show_percentage" >
+            <label for="check" class="show_percentage "> Show as Percentage (%)</label><br>
             <p id = "FullyCum_80_"></p>
             <p id = "FullyCum_Age70to79"></p>
             <p id = "FullyCum_Age60to69"></p>
@@ -62,10 +62,10 @@
 
    <section id = "county_statistics">
     <div class = "container">
-        <h3> COVID Information Per County </h3>
+        <h3> COVID-19 Information Per County </h3>
 
-<p id="countyHighest">County with most cases per 100,000: </p>
-<p id="countyLowest">County with least cases per 100,000: </p>
+<p id="countyHighest" class = "highest_rate ">County with most cases per 100,000: </p>
+<p id="countyLowest" class = "lowest_rate ">County with least cases per 100,000: </p>
 
 <p id = "county1Dropdown"></p>
 <p id = "county1"></p>
@@ -122,7 +122,6 @@ if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
     document.getElementById("county3Dropdown").innerHTML = "Please select a county: " + dropdown3;
 
     getCountyArrayNumber();
-    console.log("County1",county1);
     // calling findMax and findMin to display the counties with the higest and lowest covid rates
     findMax();
     findMin();
@@ -260,10 +259,10 @@ document.getElementById("countyLowest").innerHTML = "Lowest Covid case rate:  " 
   }
             // function to trigger a change to vaccination per age data to a percentage based on the state of a checkbox
             function changeToPercentage(week_selected){
-                console.log("ALways correct week",week_selected);
+                ;
                 let user_week = week_selected;
                 var isitChecked = document.getElementById("check").checked;
-                console.log("this is the isitchecked variable",isitChecked)
+                //console.log("this is the isitchecked variable",isitChecked)
                 if (isitChecked == true){
                     userWeekparsedByAgeArrayPercentage(parsedbyAgeWeekly,user_week)
                     //console.log("running percentage parsed by age array")
@@ -295,19 +294,19 @@ document.getElementById("countyLowest").innerHTML = "Lowest Covid case rate:  " 
             
             //function that returns data up to the week specified by the user to allow for customisation of figures to suit user input
             function userWeekparsedArray(parsedWeekly,user_week_in) {
-             console.log("Check Started");
+             
              let weeklyArray = parsedWeekly.features;
              max_week = weeklyArray.length -1;
-             console.log("this is the max week",max_week);
+             //console.log("this is the max week",max_week);
              let week_number = Number(user_week_in);
              let end_of_array = Number(week_number + 1)
              let week_index = week_number -1;
              always_correct_week = week_number;
              
-             console.log("Week Index",week_index);
+             //console.log("Week Index",week_index);
              //slice the array to exclude first element which is a 2020 figure(2021 only in this project)
              weeklyArray = weeklyArray.slice(1,end_of_array);
-             console.log(weeklyArray);
+             //console.log(weeklyArray);
              
              //creating variable for total 2021 total vaccinations
              total_figure = 0;
@@ -328,7 +327,7 @@ document.getElementById("countyLowest").innerHTML = "Lowest Covid case rate:  " 
             //setting the text of the htnml to display total(2021) and weekly vaccination figures
             document.getElementById("disp_total_vac").innerHTML= "Total vaccinations 2021" + " cumulative to week " + this_week_number;
             document.getElementById ("total_vac_big").innerHTML = total_figure;
-            document.getElementById("vac_this_week").innerHTML = "Total Vaccinations "+ "week "+ this_week_number +": " + this_week_vaccines;
+            document.getElementById("vac_this_week").innerHTML = "Total Overall vaccinations "+ "week "+ this_week_number +": " + this_week_vaccines;
             document.getElementById("pfiz_this_week").innerHTML = "Total Pfizer vaccinations " + "week "+ this_week_number +": " + pfizer_this_week_vaccines;
             document.getElementById("mod_this_week").innerHTML = "Total Moderna vaccinations " + "week "+ this_week_number +": " + moderna_this_week_vaccines;
             document.getElementById("azen_this_week").innerHTML = "Total AstraZeneca vaccinations " + "week "+ this_week_number +": " + azen_this_week_vaccines;
@@ -351,9 +350,6 @@ document.getElementById("countyLowest").innerHTML = "Lowest Covid case rate:  " 
 
                 //Parse the JSON daily data to a JavaScript variable. 
                 parsedbyAgeWeekly= JSON.parse(xmlhttp2.responseText);
-                console.log(parsedbyAgeWeekly)
-                //console.log(parsedWeekly.TotalWeeklyVaccines,parsedWeekly.Week)
-                //console.log(parsedWeekly.features)
                 let firstWeekbyAge = parsedbyAgeWeekly.features[0].attributes.TotalweeklyVaccines
                 let weeklyAgeArray = parsedbyAgeWeekly.features;
                 weeklyAgeArray = weeklyAgeArray.slice(1,weeklyAgeArray.length);
@@ -377,9 +373,9 @@ document.getElementById("countyLowest").innerHTML = "Lowest Covid case rate:  " 
              let week_number = Number(user_week_in);
              let end_of_array = Number(week_number + 1)
              let week_index = week_number -1;
-            console.log("age week index",week_index)
+            //console.log("age week index",week_index)
              userweeklyAgeArray = userweeklyAgeArray.slice(1,end_of_array);
-             console.log("LOOK HERE FOR WEEKLY ARRAY BY AGE",userweeklyAgeArray)
+             //console.log("LOOK HERE FOR WEEKLY ARRAY BY AGE",userweeklyAgeArray)
     
              //creating variable for total 2021 total vaccination
              total_figure = 0;
@@ -395,7 +391,7 @@ document.getElementById("countyLowest").innerHTML = "Lowest Covid case rate:  " 
              let FullyCum_Age10to19 = userweeklyAgeArray[week_index].attributes.FullyCum_Age10to19;
              let FullyCum_NA = userweeklyAgeArray[week_index].attributes.FullyCum_NA;
 
-             console.log("this is the week number returned",week_number);
+             //console.log("this is the week number returned",week_number);
             //setting the text of the inner.html to display total(2021) and weekly vaccination figures
              
             document.getElementById("FullyCum_80_").innerHTML = "Fully vaccinated age 80+: " + FullyCum_80_;
@@ -420,9 +416,9 @@ document.getElementById("countyLowest").innerHTML = "Lowest Covid case rate:  " 
               let week_number = Number(user_week_in);
               let end_of_array = Number(week_number + 1)
               let week_index = week_number -1;
-             console.log("age week index",week_index)
+             //console.log("age week index",week_index)
               userweeklyAgeArray = userweeklyAgeArray.slice(1,end_of_array);
-              console.log("LOOK HERE FOR WEEKLY ARRAY BY AGE",userweeklyAgeArray)
+              //console.log("LOOK HERE FOR WEEKLY ARRAY BY AGE",userweeklyAgeArray)
      
               //creating a variable that represents the total weeklyVaccines figure according to week selected (most recent week by default)
               //below values represent a percentage value instead of whole number in array
@@ -437,7 +433,7 @@ document.getElementById("countyLowest").innerHTML = "Lowest Covid case rate:  " 
               let FullyPer_Age10to19 = ((userweeklyAgeArray[week_index].attributes.FullyPer_Age10to19)*100).toFixed(2);
               let FullyPer_NA= ((userweeklyAgeArray[week_index].attributes.FullyPer_NA)*100).toFixed(2);
 
-              console.log("this is the week number returned",week_number);
+              //console.log("this is the week number returned",week_number);
              //setting the text of the innter.html  content to display total(2021) and weekly vaccination figures
               
              document.getElementById("FullyCum_80_").innerHTML = "Fully vaccinated age 80+: " + FullyPer_80_ + "%";
