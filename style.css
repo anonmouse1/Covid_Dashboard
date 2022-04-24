@@ -52,7 +52,7 @@ h1 {
 
 .submit_btn {
   background-color: lightgreen;
-  color: rgb(87, 84, 84);
+  color: rgb(54, 52, 52);
   height: 35px;
   width: 120px;
   font-size: 16px;
@@ -76,5 +76,19 @@ h1 {
 }
 
 .show_percentage {
-  font-size: x-large;
+  font-size: large;
+  color: grey;
+}
+
+.reset_btn {
+  font-size: 14px;
+  height: 21px;
+  width: 80px;
+}
+
+.highest_rate {
+  color: rgba(223, 63, 63);
+}
+.lowest_rate {
+  color: rgb(6, 160, 6);
 }
