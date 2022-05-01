@@ -1,6 +1,6 @@
 # Covid_Dashboard
 This is a useful site that displays COVID-19 vaccination data in Ireland.
-It's also my first interaction with Javascript, I learned a huge amount working on this website. I plan to come back to revise and re-structure the code as I learn more web development best practices.
+I learned a huge amount working on this website, it's also my first interaction with Javascript. I plan to come back to revise and re-structure the code as I learn more web development best practices.
 
 The site displays:
 
